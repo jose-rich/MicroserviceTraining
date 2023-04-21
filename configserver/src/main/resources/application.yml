@@ -1,0 +1,28 @@
+server:
+  port: 9296
+
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:
+    config:
+      server:
+        git:
+          username: jose-rich
+          password: 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
+          uri: https://github.com/jose-rich/springconfig.git
+          clone-on-start: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans, env
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: ${EUREKA_SERVER_ADDRESS:http://localhost:8761/eureka}
