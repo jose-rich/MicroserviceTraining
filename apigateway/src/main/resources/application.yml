@@ -13,41 +13,28 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: ORDER-SERVICE
-          uri: lb://ORDER-SERVICE
+        - id: HOSPITAL-SERVICE
+          uri: lb://HOSPITAL-SERVICE
           predicates:
-            - Path=/order/**
+            - Path=/hospital/**
           filters:
             - name: CircuitBreaker
               args:
                 name: ORDER-SERVICE
-                fallbackuri: forward:/orderServiceFallBack
+                fallbackuri: forward:/hospitalServiceFallBack
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 1 # how many requests per second a user is allowed to send without any dropped requests (1000 requests per minute)
                 redis-rate-limiter.burstCapacity: 1 # maximum number of requests a user is allowed to do in a single second (500 requests per second)
-        - id: PAYMENT-SERVICE
-          uri: lb://PAYMENT-SERVICE
+        - id: PATIENT-SERVICE
+          uri: lb://PATIENT-SERVICE
           predicates:
-            - Path=/payment/**
+            - Path=/patient/**
           filters:
             - name: CircuitBreaker
               args:
-                name: PAYMENT-SERVICE
-                fallbackuri: forward:/paymentServiceFallBack
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 1
-        - id: PRODUCT-SERVICE
-          uri: lb://PRODUCT-SERVICE
-          predicates:
-            - Path=/product/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: PRODUCT-SERVICE
-                fallbackuri: forward:/productServiceFallBack
+                name: PATIENT-SERVICE
+                fallbackuri: forward:/patientServiceFallBack
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 1

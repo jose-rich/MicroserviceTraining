@@ -6,19 +6,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FallbackController {
 
-    @GetMapping("/orderServiceFallBack")
+    @GetMapping("/hospitalServiceFallBack")
     public String orderServiceFallback() {
-        return "Order Service is down!";
+        return "Hospital Service is down!";
     }
 
-    @GetMapping("/paymentServiceFallBack")
+    @GetMapping("/patientServiceFallBack")
     public String paymentServiceFallback() {
         return "Payment Service is down!";
-    }
-
-    @GetMapping("/productServiceFallBack")
-    public String productServiceFallback() {
-        return "Product Service is down!";
     }
 
     @GetMapping("/authServiceFallBack")
